@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Download page</title>
+</head>
+<body>
+<h1>Download your files here</h1>
+<ul>
+<li>
+{%for data in files%}
+{{files[1]}}<a href="{{url_for('download',id=data[0])}}">download</a>
+</li>
+{%endfor%}
+</ul>
+</body>
+</html>
