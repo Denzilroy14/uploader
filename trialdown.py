@@ -36,12 +36,8 @@ def view():
 @app.route('/download/<int:id>')
 def download(id):
     with sqlite3.connect('trial.db')as con:
-        curr=con.execute('SELECT filename,filedata FROM files WHERE id=?',(id,))
-        file=curr.fetchone()
-        if file:
-            filename,filedata=file
-        else:
-            return "<html><body><h1>file not found</h1></body></html>"
+        curr=con.cursor()
+        data=curr.execute('SELECT * FROM files WHERE id=?',(id,)).fetchone()
 if __name__=='__main__':
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
