@@ -37,7 +37,8 @@ def view():
 def download(id):
     with sqlite3.connect('trial.db')as con:
         curr=con.cursor()
-        data=curr.execute('SELECT * FROM files WHERE id=?',(id,)).fetchone()
+        curr.execute('SELECT * FROM files WHERE id=?',(id,)).fetchone()
+        curr.commit()
 if __name__=='__main__':
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
